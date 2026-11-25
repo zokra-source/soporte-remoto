@@ -1,1 +1,445 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <title>Requisitos previa instalación nueva ContPAQi</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    body {
+        background: #0F2027;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .mensaje-temporal {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .mensaje-temporal.mostrar {
+        opacity: 1;
+    }
+
+    .contenido-oculto {
+        white-space: pre-line;
+        /* Preserva saltos de línea pero colapsa espacios extras */
+        display: none;
+        /* Oculta el elemento pero mantiene el formateo */
+    }
+</style>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+    </header>
+    <main class="mt-5">
+        <div class="container text-center">
+            <div class="row">
+                <h1 class="text-white">InstalYa básico para ContPAQi</h1>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <!-- <p class="text-white fs-4">(1) Características de Windows</p> -->
+                    <table class="table table-dark table-striped table-hover table align-middle">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle">Sistema Operativo</th>
+                                <th>(1) Características de Windows</th>
+                                <th>(2) Aplicaciones de Microsoft</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <td class="text-white">Windows 10 & 11</td>
+                                <td class="text-white">
+                                    <!-- Example split danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-sm">Net3.5</button>
+                                        <button type="button"
+                                            class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="dism /Online /Enable-Feature /FeatureName:NetFX3 /All /NoRestart"
+                                                title="dism /Online /Enable-Feature /FeatureName:NetFX3 /All /NoRestart">
+                                                <a class="dropdown-item" href="#">Net Instalar con DISM</a>
+                                            </li>
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="Enable-WindowsOptionalFeature -Online -FeatureName 'NetFx3' -All -NoRestart"
+                                                title="Enable-WindowsOptionalFeature -Online -FeatureName 'NetFx3' -All -NoRestart">
+                                                <a class="dropdown-item" href="#">Net Instalar con Powershell</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                        </ul>&nbsp;
+                                        <button type="button" class="btn btn-primary btn-sm">MSMQ</button>
+                                        <button type="button"
+                                            class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li onclick="copiarAlPortapapeles(this)" data-command="dism /Online /NoRestart /English /Enable-Feature
+                                            /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server"
+                                                title="dism /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server">
+                                                <a class="dropdown-item" href="#">MSMQ Instalar con DISM</a>
+                                            </li>
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="Enable-WindowsOptionalFeature -Online -FeatureName 'MSMQ-Container','MSMQ-Server' -All -NoRestart"
+                                                title="Enable-WindowsOptionalFeature -Online -FeatureName 'MSMQ-Container','MSMQ-Server' -All -NoRestart">
+                                                <a class="dropdown-item" href="#">MSMQ Instalar con Powershell</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td class="text-white">
+                                    <!-- Example split danger button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-sm">Visual C++</button>
+                                        <button type="button"
+                                            class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li onclick="copiarWinget('VCx86')">
+                                                <a class="dropdown-item" href="#">x86 instalar con Winget</a>
+                                                <div id="VCx86" class="contenido-oculto">winget install -e --id
+                                                    "Microsoft.VCRedist.2005.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2008.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2010.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2012.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2013.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2015+.x86"
+                                                </div>
+                                            </li>
+                                            <li onclick="copiarWinget('VCx64')">
+                                                <a class="dropdown-item" href="#">x86-x64 instalar con Winget</a>
+                                                <div id="VCx64" class="contenido-oculto">winget install -e --id
+                                                    "Microsoft.VCRedist.2005.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2008.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2010.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2012.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2013.x86" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2015+.x86"<br>
+                                                    winget install -e --id "Microsoft.VCRedist.2005.x64" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2008.x64" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2010.x64" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2012.x64" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2013.x64" <br>
+                                                    winget install -e --id "Microsoft.VCRedist.2015+.x64"
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="https://github.com/abbodi1406/vcredist/releases/download/v0.103.0/VisualCppRedist_AIO_x86_x64.exe">
+                                                <a class="dropdown-item" href="#">x86_x64 Descargar AIO instalador</a>
+                                            </li>
+                                        </ul>&nbsp;
+                                        <button type="button" class="btn btn-primary btn-sm">Net4.8</button>
+                                        <button type="button"
+                                            class="btn btn-success btn-sm dropdown-toggle dropdown-toggle-split"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="winget install -e --id 'Microsoft.DotNet.Framework.DeveloperPack_4'">
+                                                <a class="dropdown-item" href="#">Net Instalar con Winget</a>
+                                            </li>
+                                            <li onclick="copiarAlPortapapeles(this)"
+                                                data-command="https://download.microsoft.com/download/f/3/a/f3a6af84-da23-40a5-8d1c-49cc10c8e76f/NDP48-x86-x64-AllOS-ENU.exe">
+                                                <a class="dropdown-item" href="#">Net Descargar instalador</a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">Windows Server 2016 +</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-block btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="Install-WindowsFeature -Name NET-Framework-Core"
+                                        title="Install-WindowsFeature -Name NET-Framework-Core">Net3.5</button>
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="Install-WindowsFeature -Name MSMQ-Server"
+                                        title="Install-WindowsFeature -Name MSMQ-Server">MSMQ</button>
+                                </td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://github.com/abbodi1406/vcredist/releases/download/v0.103.0/VisualCppRedist_AIO_x86_x64.exe">Visual
+                                        C++ AIO</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <figure class="text-white">
+                        <blockquote class="blockquote">
+                            <p>Observaciones:</p>
+                        </blockquote>
+                        <figcaption class="blockquote-footer">
+                            Se recomienda el uso de Powershell para habilitar las características e instalación de
+                            aplicaciones con Winget.
+                        </figcaption>
+                        <figcaption class="blockquote-footer">
+                            Ejecutar como Administrador.
+                        </figcaption>
+                        <figcaption class="blockquote-footer">
+                            Cuando se use por primera vez Winget, se recomienda usar <em><span class="text-info">winget
+                                    update</span></em> para aceptar el uso de los repositorios.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"></div>
+                <div class="col">
+                    <table class="table table-dark table-striped table-hover table align-middle">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle" colspan="2">Aplicaciones a instalar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr>
+                                <td class="text-white">Descargas ContPAQi</td>
+                                <td class="text-white">
+                                    <form target="_blank">
+                                        <button class="btn btn-primary btn-sm"
+                                            formaction="https://old.contpaqi.com/descargas">Abrir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">Native Client</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="winget install -e --id Microsoft.SQLServer.2012.NativeClient">winget</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://www.dropbox.com/scl/fi/gm18zrugd67dly7s56b1l/sqlncli2012_x86_NativeClientv11.msi?rlkey=c4mqbgcd5xqipz2my1sokkuqz&st=wvg8ds2v&dl=1">x86</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://www.dropbox.com/scl/fi/rvyrd154ofzl17qehujja/sqlncli2012_x64_NativeClientv11.msi?rlkey=w0ng9g5l87j18z15djlog4qaj&st=c46pkcat&dl=1">x64</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">Visual Studio 2010 Tools para Office Runtime</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="winget install -e --id Microsoft.VSTOR">winget</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://download.microsoft.com/download/8/6/4/8641e164-7796-4b34-81c7-30d24a5bd533/vstor_redist.exe">x86_x64</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">Microsoft Edge Webview2</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="winget install -e --id Microsoft.EdgeWebView2Runtime">winget</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/87e36ef6-ce52-4421-8abd-7cae0a41ec7f/MicrosoftEdgeWebview2Setup.exe">x86_x64</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">SQL Server Express</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        data-command="https://download.microsoft.com/download/7/f/8/7f8a9c43-8c8a-4f7c-9f92-83c18d96b681/SQL2019-SSEI-Expr.exe"
+                                        onclick="copiarAlPortapapeles(this)">2019 x64
+                                    </button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://download.microsoft.com/download/5/1/4/5145fe04-4d30-4b85-b0d1-39533663a2f1/SQL2022-SSEI-Expr.exe">2022
+                                        x64</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-white">SQL Management Studio</td>
+                                <td class="text-white">
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://download.microsoft.com/download/8/a/8/8a8073d2-2e00-472b-9a18-88361d105915/SSMS-Setup-ENU.exe">v18
+                                        x64</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="https://aka.ms/ssmsfullsetup">Última versión x64</button>&nbsp;
+                                    <button class="btn btn-primary btn-sm text-white"
+                                        onclick="copiarAlPortapapeles(this)"
+                                        data-command="winget install -e --id Microsoft.SQLServerManagementStudio --locale en-US">winget</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Div para el mensaje -->
+        <div id="mensajeCopia" class="mensaje-temporal">Contenido copiado</div>
+    </main>
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <p class="text-white text-center">&copy; 2025, By MasterGhost</p>
+        </div>
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script>
+        // function copiarAlPortapapeles(id_elemento) {
+        //     var aux = document.createElement("input");
+        //     aux.setAttribute("value", document.getElementById(id_elemento).innerHTML);
+        //     document.body.appendChild(aux);
+        //     aux.select();
+        //     document.execCommand("copy");
+        //     document.body.removeChild(aux);
+        // }
+        function mostrarMensaje() {
+            const mensaje = document.getElementById('mensajeCopia');
+            mensaje.classList.add('mostrar');
+
+            // Ocultar después de 2 segundos
+            setTimeout(() => {
+                mensaje.classList.remove('mostrar');
+            }, 2000);
+        }
+
+        function copiarAlPortapapeles(boton) {
+            // Obtener el texto y limpiarlo
+            let texto = boton.dataset.command;
+
+            // Eliminar espacios extras, tabulaciones y saltos de línea
+            texto = texto.replace(/\s+/g, ' ').trim();
+
+            // Crear un elemento temporal para copiar
+            const temporal = document.createElement('textarea');
+            temporal.value = texto;
+            document.body.appendChild(temporal);
+
+            // Seleccionar y copiar
+            temporal.select();
+            document.execCommand('copy');
+
+            // Eliminar el elemento temporal
+            document.body.removeChild(temporal);
+
+            // Mostrar el mensaje temporal
+            mostrarMensaje();
+        }
+        function copiarWinget(elementId) {
+            const elemento = document.getElementById(elementId);
+            let lineas = elemento.innerHTML
+                .replace(/<br\s*\/?>/gi, '\n')  // Convierte <br> en saltos de línea
+                .replace(/&nbsp;/g, ' ')        // Convierte &nbsp; en espacios normales
+                .trim()                         // Elimina espacios al inicio y final
+                .split('\n')                    // Divide en líneas
+                .map(linea => linea.trim())     // Limpia cada línea
+                .filter(linea => linea);        // Elimina líneas vacías
+
+            // Procesar las líneas para unir comandos partidos
+            let comandosCompletos = [];
+            let comandoActual = '';
+
+            for (let i = 0; i < lineas.length; i++) {
+                let linea = lineas[i];
+
+                // Si la línea termina en --id o similares, está incompleta
+                if (linea.endsWith('--id') || !linea.includes('"')) {
+                    comandoActual = linea;
+                }
+                // Si la línea empieza con comillas y tenemos un comando pendiente
+                else if (linea.startsWith('"') && comandoActual) {
+                    comandosCompletos.push(comandoActual + ' ' + linea);
+                    comandoActual = '';
+                }
+                // Si es un comando completo
+                else {
+                    if (comandoActual) {
+                        comandosCompletos.push(comandoActual);
+                    }
+                    comandosCompletos.push(linea);
+                    comandoActual = '';
+                }
+            }
+
+            // Añadir último comando si quedó pendiente
+            if (comandoActual) {
+                comandosCompletos.push(comandoActual);
+            }
+
+            // Unir todos los comandos con saltos de línea
+            const textoFinal = comandosCompletos.join('\n');
+
+            // Copiar al portapapeles
+            const temporal = document.createElement('textarea');
+            temporal.value = textoFinal;
+            document.body.appendChild(temporal);
+            temporal.select();
+            document.execCommand('copy');
+            document.body.removeChild(temporal);
+
+            mostrarMensaje();
+
+            // Muestra el mensaje
+            // const mensaje = document.getElementById('mensajeCopia');
+            // mensaje.classList.add('mostrar');
+            // setTimeout(() => {
+            //     mensaje.classList.remove('mostrar');
+            // }, 2000);
+        }
+    </script>
+</body>
+
+</html>
+
 
